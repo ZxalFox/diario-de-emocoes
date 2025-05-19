@@ -1,0 +1,27 @@
+{
+  "version": 3,
+  "name": "diario-de-emocoes-api",
+  "timeout": "3000ms",
+  "endpoints": [
+    {
+      "endpoint": "/user/health",
+      "method": "GET",
+      "backend": [
+        {
+          "url_pattern": "/health",
+          "host": ["http://user-backend:3000"]
+        }
+      ]
+    },
+    {
+      "endpoint": "/messages/health",
+      "method": "GET",
+      "backend": [
+        {
+          "url_pattern": "/health",
+          "host": ["http://messaging-backend:3000"]
+        }
+      ]
+    }
+  ]
+}

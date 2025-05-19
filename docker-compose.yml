@@ -32,6 +32,19 @@ services:
       - "15432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
+  krakend:
+    image: krakend:latest
+    container_name: krakend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./krakend/config:/etc/krakend
+    command: ["run", "--config", "/etc/krakend/krakend.json"]
+    depends_on:
+      - user-backend
+      - messaging-backend
+
+
 
 volumes:
   db-data:
