@@ -23,13 +23,19 @@ class NotificationWorker
 
     streak = calculate_streak(user)
     
-    if streak >= 0 &&  # Notifica a cada 7 dias de sequência
+    if streak >= 7 &&  # Notifica a cada 7 dias de sequência
       user.notifications.create!(
         title: "🎉 Ótima sequência!",
         message: "Você anotou emoções por #{streak} dias seguidos! Continue assim!",
         notification_type: 'achievement'
       )
     end
+
+    user.notifications.create!(
+      title: "📝 Registro de Emoção",
+      message: "Você registrou uma nova emoção: #{emotion.mood} às #{emotion.recorded_at.strftime('%H:%M')}.",
+      notification_type: 'entry_logged'
+    )
   end
   
   def create_daily_reminder(user)
@@ -60,7 +66,7 @@ class NotificationWorker
     return 0 if dates.empty?
 
     # A sequência começa em 1 (o dia do último registro).
-    streak = 7
+    streak = 1
     # A data que esperamos encontrar na próxima iteração.
     expected_date = dates.first.prev_day
 

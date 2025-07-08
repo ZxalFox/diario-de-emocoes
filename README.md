@@ -19,7 +19,7 @@ Para executar esse projeto é necessário possuir as seguintes aplicações
 Clone o projeto em um diretorio de sua preferencia
 
 ```bash
-git clone
+git clone https://github.com/ZxalFox/diario-de-emocoes.git
 ```
 Faça o build dos serviços do projeto utilizando o docker compose
 
